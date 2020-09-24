@@ -1,0 +1,9 @@
+{
+  "HOME" : {
+      "APPName": "Car Management",
+      "SELECT": "Select Language"
+  },
+  "CreateCarCard" : {
+    "Title": "Create New Car Card"
+  }
+}
