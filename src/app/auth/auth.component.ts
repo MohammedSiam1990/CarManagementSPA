@@ -38,7 +38,7 @@ export class AuthComponent implements OnInit {
       // tslint:disable-next-line: no-debugger
       debugger;
       this.isLooding = true;
-      this.router.navigate(['/officerQuery']);
+      this.router.navigate(['/carCardQuery']);
     });
     // tslint:disable-next-line: no-debugger
     // await this.delay(3000);

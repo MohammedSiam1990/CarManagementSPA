@@ -9,80 +9,78 @@
     <mat-card-content>
       <mat-grid-list cols="3" [gutterSize]="'50px'" rowHeight="2:1">
         <form [formGroup]="carCardForm" (ngSubmit)="addCarCard()">
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <mat-label>Car Number</mat-label>
-            <input matInput type="text" formControlName="carNumber" required>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <mat-label>Type of car</mat-label>
-            <mat-select formControlName="typeOfCar">
-              <mat-select-trigger>
-                <mat-icon></mat-icon>
-              </mat-select-trigger>
-              <mat-option>
-                <mat-icon></mat-icon>
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <mat-label>Nationality</mat-label>
-            <mat-select formControlName="nationality">
-              <mat-select-trigger>
-                <mat-icon></mat-icon>
-              </mat-select-trigger>
-              <mat-option>
-                <mat-icon></mat-icon>
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Model" required formControlName="model">
-            <mat-error></mat-error>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Scheduled Cars" required formControlName="scheduledCars">
-            <mat-error></mat-error>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Existing Cars" required formControlName="existingCars">
-            <mat-error></mat-error>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Status" required formControlName="Status">
-            <mat-error></mat-error>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Notes" formControlName="Notes"></textarea>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker" placeholder="Born">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Bio"></textarea>
-          </mat-form-field>
-        </mat-grid-tile>
-      </form>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <mat-label>Car Number</mat-label>
+              <input matInput type="text" formControlName="carNumber" required>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <mat-label>Type of car</mat-label>
+              <mat-select formControlName="typeOfCarf">
+                <mat-option value="undefined">Please select Car Type
+                </mat-option>
+                <mat-option *ngFor="let typeOfCar of typeOfCarDto" [value]="typeOfCar.id">
+                  {{typeOfCar.carName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <mat-label>Nationality</mat-label>
+              <mat-select formControlName="nationality">
+                <mat-option value="undefined">Please select Nationality
+                </mat-option>
+                <mat-option *ngFor="let nationality of nathanalotyDto" [value] = "nationality.id">
+                  {{nationality.nationalityName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Model" required formControlName="model">
+              <mat-error></mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Scheduled Cars" required formControlName="scheduledCars">
+              <mat-error></mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Existing Cars" required formControlName="existingCars">
+              <mat-error></mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Status" required formControlName="Status">
+              <mat-error></mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Notes" formControlName="Notes"></textarea>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="picker" placeholder="Born">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Bio"></textarea>
+            </mat-form-field>
+          </mat-grid-tile>
+        </form>
       </mat-grid-list>
     </mat-card-content>
     <mat-card-actions>

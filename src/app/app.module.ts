@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +18,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CarCardQueryComponent } from './carCard/carCard-query/carCard-query.component';
 import { CarCardCreateComponent } from './carCard/carCard-create/carCard-create.component';
 import { CarCardEditComponent } from './carCard/carCard-edit/carCard-edit.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { AlertifyService } from './shared/services/alertify.service';
+import { AuthService } from './auth/auth.service';
 
+
+// tslint:disable-next-line: typedef
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 // tslint:disable-next-line: typedef
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -48,8 +57,20 @@ export function HttpLoaderFactory(http: HttpClient) {
          deps: [HttpClient]
       }
    }),
+   JwtModule.forRoot({
+    config: {
+      tokenGetter ,
+      allowedDomains: ['localhost:50251'],
+      disallowedRoutes: ['localhost:50251/api/auth']
+    }
+  })
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AlertifyService,
+    AuthGuard,
+
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

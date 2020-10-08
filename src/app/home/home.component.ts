@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
               private alertify: AlertifyService,
               private router: Router) {
     // tslint:disable-next-line: no-debugger
-    debugger;
     translate.addLangs(['ar', 'en']);
     translate.setDefaultLang('ar');
     // const browserLang = translate.getBrowserLang();

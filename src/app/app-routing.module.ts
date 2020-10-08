@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 
@@ -10,11 +11,11 @@ import { CarCardCreateComponent } from './carCard/carCard-create/carCard-create.
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent},
-  { path: '', component: HomeComponent,
-        // runGuardsAndResolvers: 'always',
-        // canActivate: [AuthGuard],
+  { path: '',  component: HomeComponent,
+        runGuardsAndResolvers: 'always',
+        canActivate: [AuthGuard],
         children: [
-            {path: 'carCardQuery', component: CarCardQueryComponent, pathMatch: 'full' },
+            {path: 'carCardQuery', component: CarCardQueryComponent},
             {path: 'carCardCreate', component: CarCardCreateComponent },
             {path: 'testApp', component: TestappComponent},
             // {path: 'member-detail/:id', component: MemberDetailComponent,
