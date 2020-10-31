@@ -18,7 +18,7 @@
           <mat-grid-tile>
             <mat-form-field class="example-full-width">
               <mat-label>Type of car</mat-label>
-              <mat-select formControlName="typeOfCarf">
+              <mat-select formControlName="typeOfCar" (selectionChange)="loadCarModelookUP($event.value)">
                 <mat-option value="undefined">Please select Car Type
                 </mat-option>
                 <mat-option *ngFor="let typeOfCar of typeOfCarDto" [value]="typeOfCar.id">
@@ -41,7 +41,14 @@
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Model" required formControlName="model">
+              <mat-label> Car Model</mat-label>
+              <mat-select formControlName="carModel">
+                <mat-option value="undefined">Please select Car Model
+                </mat-option>
+                <mat-option *ngFor="let carModel of carModelsDto" [value] = "carModel.id">
+                  {{carModel.modelName}}
+                </mat-option>
+              </mat-select>
               <mat-error></mat-error>
             </mat-form-field>
           </mat-grid-tile>
@@ -84,8 +91,8 @@
       </mat-grid-list>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
+      <button mat-raised-button color="warn">Rest</button>
+      <button mat-raised-button color="primary">Add New Card</button>
     </mat-card-actions>
   </mat-card>
 

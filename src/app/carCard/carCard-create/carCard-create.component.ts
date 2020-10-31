@@ -4,6 +4,7 @@ import {
   FormControl,
   Validators,
   FormBuilder,
+  NgForm,
 } from '@angular/forms';
 import { from } from 'rxjs';
 import { LookUpService } from 'src/app/shared/services/lookUp.service';
@@ -13,7 +14,7 @@ import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthService } from 'src/app/auth/auth.service';
 // tslint:disable-next-line: class-name
 export interface lookUpDto {
-  lookUpType: LookUpType ;
+  lookUpType: LookUpType;
 }
 
 @Component({
@@ -28,7 +29,8 @@ export class CarCardCreateComponent implements OnInit {
   carCardForm: FormGroup;
   typeOfCarDto: any;
   nathanalotyDto: any;
-  selectedCar: string;
+  carModelsDto: any;
+  selectedCarModel: any;
   constructor(
     private fb: FormBuilder,
     private lookUpService: LookUpService,
@@ -40,27 +42,47 @@ export class CarCardCreateComponent implements OnInit {
   ngOnInit() {
     this.createCarCardForm();
     // tslint:disable-next-line: no-debugger
-    this.loadTypeOfCarLookUP();
+    this.loadLookUP();
   }
   // tslint:disable-next-line: typedef
-  loadTypeOfCarLookUP() {
+  loadLookUP() {
+    this.lookUpService
+      .loadlookUp(this.authService.decodedToken.nameid)
+      .subscribe(
+        (data: any) => {
+          console.log(data);
+          this.typeOfCarDto = data.lookUps.TypeOfCar;
+          this.selectedCarModel = this.typeOfCarDto;
+          console.log(this.selectedCarModel.id);
+          this.nathanalotyDto = data.lookUps.Nationality;
+          console.log(data);
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
+  }
 
-    this.lookUpService.loadlookUp(this.authService.decodedToken.nameid).subscribe(
-      (data: any) =>  {
-        this.typeOfCarDto = data.lookUps.TypeOfCar;
-        this.nathanalotyDto = data.lookUps.Nationality;
-        // tslint:disable-next-line: no-debugger
-        debugger;
-        console.log(data);
-      },
-      (error) => {
-        this.alertify.error(error);
-      }
-    );
+  // tslint:disable-next-line: typedef
+  loadCarModelookUP(carTypeId: number) {
+    // tslint:disable-next-line: no-debugger
+    debugger;
+    console.log('Test loadlooKUPCascading');
+    this.lookUpService
+      .loadlooKUPCascading(this.authService.decodedToken.nameid, carTypeId, LookUpType.CarModel)
+      .subscribe(
+        (data: any) => {
+          this.carModelsDto = data;
+          console.log(data);
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
   }
   // tslint:disable-next-line: typedef
   createCarCardForm() {
-    console.log('Test1');
+
     this.carCardForm = this.fb.group(
       {
         // gender: ['male'],
@@ -69,8 +91,9 @@ export class CarCardCreateComponent implements OnInit {
         scheduledCars: ['', Validators.required],
         existingCars: ['', Validators.required],
         Status: ['', Validators.required],
-        // nationality: [''],
-        // typeOfCarf: [''],
+        nationality: ['', Validators.required],
+        typeOfCar: ['', Validators.required],
+        carModel: ['', Validators.required],
         // password: [
         //   '',
         //   [

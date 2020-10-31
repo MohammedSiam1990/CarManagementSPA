@@ -8,27 +8,27 @@ import { lookUpDto } from 'src/app/carCard/carCard-create/carCard-create.compone
 import { LookUpType } from '../enum/LookUpType.enum';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LookUpService {
   looKUP: LookUP[] = [];
-// public looKUPs: Observable<LookUP[]> = of([]);
+  baseurl = environment.apiUrl + 'LookUP/';
+  constructor(private http: HttpClient) {}
+  loadlookUp(id: number): Observable<any> {
+    return this.http.get<LookUP>(this.baseurl + id + '/getLookUP').pipe(
+      map((response: any) => {
+        return response;
+      })
+    );
+  }
 
-baseurl = environment.apiUrl  + 'LookUP/';
-constructor(private http: HttpClient) { }
-
-// tslint:disable-next-line: typedef
- // tslint:disable-next-line: no-shadowed-variable
- loadlookUp(id: number): Observable<any> {
-  return this.http.get<LookUP>(this.baseurl + id + '/getLookUP').pipe(
-    map((response: any) => {
-      return response;
-      // tslint:disable-next-line: no-debugger
-      debugger;
-      console.log(response.lookUps);
-    }));
-}
-
-
-
+  loadlooKUPCascading(userId: number, carTypeId: number, lookUpType: number): Observable<any> {
+    return this.http
+      .get<any>(this.baseurl + userId + '/' + carTypeId + '/' + lookUpType + '/GetLookUPCascading')
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
 }
