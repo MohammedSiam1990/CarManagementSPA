@@ -14,33 +14,33 @@
       </div>
       <mat-form-field>
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Ex. ium" #input>
       </mat-form-field>
     </div>
     <mat-card-content>
-      <table mat-table [dataSource]="dataSource" class="table-striped">
+      <table mat-table [dataSource]="dataSource"  class="table-striped" matSort>
         <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <ng-container matColumnDef="carNumber">
+          <th *matHeaderCellDef mat-sort-header> Car Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.carNumber}} </td>
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <ng-container matColumnDef="carModelName">
+          <th *matHeaderCellDef mat-sort-header> Car Model </th>
+          <td mat-cell *matCellDef="let element"> {{element.carModelName}} </td>
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        <ng-container matColumnDef="nationalityName">
+          <th  *matHeaderCellDef mat-sort-header> Nationality </th>
+          <td mat-cell *matCellDef="let element"> {{element.nationalityName}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <ng-container matColumnDef="scheduledCars">
+          <th  *matHeaderCellDef mat-sort-header> Scheduled Cars </th>
+          <td mat-cell *matCellDef="let element"> {{element.scheduledCars}} </td>
         </ng-container>
 
 
@@ -48,19 +48,14 @@
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="test1">
-          <th mat-header-cell *matHeaderCellDef> Test Entrance </th>
+          <th  *matHeaderCellDef mat-sort-header> Type Car </th>
           <td mat-cell *matCellDef="let element">
-            <mat-form-field color="accent" appearance="fill">
-              <mat-label>Custom calendar color</mat-label>
-              <input matInput [matDatepicker]="picker2">
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2 color="primary"></mat-datepicker>
-            </mat-form-field>
+            {{element.typeCarName}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="test">
-          <th mat-header-cell *matHeaderCellDef> Test 1 Entrance </th>
+          <th  *matHeaderCellDef mat-sort-header> Test 1 Entrance </th>
           <td mat-cell *matCellDef="let element">
             <mat-form-field color="accent" appearance="fill">
               <mat-label>Custom Test color</mat-label>
@@ -70,10 +65,20 @@
             </mat-form-field>
           </td>
         </ng-container>
-        <ng-container matColumnDef="test3">
-          <th mat-header-cell *matHeaderCellDef> Test 3 Entrance </th>
+        <ng-container matColumnDef="edit">
+          <th  *matHeaderCellDef mat-sort-header> Edit </th>
           <td mat-cell *matCellDef="let element">
-            <button type="button" class="btn btn-primary" (click)="openAddContactDialog()">Edit</button>
+            <button mat-fab color="primary" (click)="openAddContactDialog()"><span class="material-icons">
+              edit
+              </span></button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th  *matHeaderCellDef mat-sort-header> Delete </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-fab color="warn" (click)="openAddContactDialog()"><span class="material-icons">
+              delete
+              </span></button>
           </td>
         </ng-container>
 
@@ -88,6 +93,8 @@
           <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
         </tr>
       </table>
+      <mat-paginator [pageSize]= "pagination.itemsPerPage" [length] = "pagination.totalItems" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageChanged($event)" showFirstLastButtons>
+      </mat-paginator>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button>LIKE</button>

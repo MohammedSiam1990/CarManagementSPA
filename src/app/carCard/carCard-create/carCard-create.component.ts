@@ -12,6 +12,7 @@ import { LookUP } from 'src/app/shared/models/lookUP';
 import { LookUpType } from 'src/app/shared/enum/LookUpType.enum';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { CarCardServiceService } from 'src/app/carCard/carCardService.service';
 // tslint:disable-next-line: class-name
 export interface lookUpDto {
   lookUpType: LookUpType;
@@ -35,7 +36,8 @@ export class CarCardCreateComponent implements OnInit {
     private fb: FormBuilder,
     private lookUpService: LookUpService,
     private alertify: AlertifyService,
-    private authService: AuthService
+    private authService: AuthService,
+    private carCardService: CarCardServiceService
   ) {}
 
   // tslint:disable-next-line: typedef
@@ -62,11 +64,8 @@ export class CarCardCreateComponent implements OnInit {
         }
       );
   }
-
   // tslint:disable-next-line: typedef
   loadCarModelookUP(carTypeId: number) {
-    // tslint:disable-next-line: no-debugger
-    debugger;
     console.log('Test loadlooKUPCascading');
     this.lookUpService
       .loadlooKUPCascading(this.authService.decodedToken.nameid, carTypeId, LookUpType.CarModel)
@@ -108,5 +107,21 @@ export class CarCardCreateComponent implements OnInit {
     );
   }
   // tslint:disable-next-line: typedef
-  addCarCard() {}
+  addCarCard() {
+    // tslint:disable-next-line: no-debugger
+    debugger;
+    // if (this.carCardForm.valid) {
+    this.carCardService
+      .addNewCarCard(this.authService.decodedToken.nameid, this.carCardForm.value)
+      .subscribe(
+        (data: any) => {
+          console.log(data);
+          this.alertify.success('Add New Car Card successfully');
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
+    // }
+  }
 }

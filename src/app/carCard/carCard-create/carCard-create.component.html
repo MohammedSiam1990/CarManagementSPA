@@ -1,14 +1,14 @@
 <div class="container">
-  <mat-card class="example-card">
+  <mat-card class="example-card mat-elevation-z8">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{'CreateCarCard.Title' | translate}}</mat-card-title>
       <mat-card-subtitle>Car Management </mat-card-subtitle>
     </mat-card-header>
-
+    <form [formGroup]="carCardForm" (ngSubmit)="addCarCard()">
     <mat-card-content>
       <mat-grid-list cols="3" [gutterSize]="'50px'" rowHeight="2:1">
-        <form [formGroup]="carCardForm" (ngSubmit)="addCarCard()">
+
           <mat-grid-tile>
             <mat-form-field class="example-full-width">
               <mat-label>Car Number</mat-label>
@@ -18,7 +18,7 @@
           <mat-grid-tile>
             <mat-form-field class="example-full-width">
               <mat-label>Type of car</mat-label>
-              <mat-select formControlName="typeOfCar" (selectionChange)="loadCarModelookUP($event.value)">
+              <mat-select formControlName="typeOfCar" required (selectionChange)="loadCarModelookUP($event.value)">
                 <mat-option value="undefined">Please select Car Type
                 </mat-option>
                 <mat-option *ngFor="let typeOfCar of typeOfCarDto" [value]="typeOfCar.id">
@@ -30,7 +30,7 @@
           <mat-grid-tile>
             <mat-form-field class="example-full-width">
               <mat-label>Nationality</mat-label>
-              <mat-select formControlName="nationality">
+              <mat-select formControlName="nationality" required>
                 <mat-option value="undefined">Please select Nationality
                 </mat-option>
                 <mat-option *ngFor="let nationality of nathanalotyDto" [value] = "nationality.id">
@@ -42,7 +42,7 @@
           <mat-grid-tile>
             <mat-form-field class="example-full-width">
               <mat-label> Car Model</mat-label>
-              <mat-select formControlName="carModel">
+              <mat-select formControlName="carModel" required>
                 <mat-option value="undefined">Please select Car Model
                 </mat-option>
                 <mat-option *ngFor="let carModel of carModelsDto" [value] = "carModel.id">
@@ -87,13 +87,14 @@
               <textarea matInput placeholder="Bio"></textarea>
             </mat-form-field>
           </mat-grid-tile>
-        </form>
+
       </mat-grid-list>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="warn">Rest</button>
       <button mat-raised-button color="primary">Add New Card</button>
     </mat-card-actions>
+  </form>
   </mat-card>
 
 </div>
