@@ -21,6 +21,7 @@ import { CarCardEditComponent } from './carCard/carCard-edit/carCard-edit.compon
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AlertifyService } from './shared/services/alertify.service';
 import { AuthService } from './auth/auth.service';
+import { DefinitionScreensComponent } from './definition-screens/definition-screens.component';
 
 
 // tslint:disable-next-line: typedef
@@ -39,7 +40,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       TestappComponent,
       CarCardQueryComponent,
       CarCardCreateComponent,
-      CarCardEditComponent
+      CarCardEditComponent,
+      DefinitionScreensComponent
    ],
   imports: [
     BrowserModule,

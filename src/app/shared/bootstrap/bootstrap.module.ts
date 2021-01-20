@@ -5,13 +5,15 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
+
 import { from } from 'rxjs';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, AccordionModule.forRoot(), CarouselModule.forRoot(), BsDropdownModule.forRoot()
+    CommonModule, AccordionModule.forRoot(), CarouselModule.forRoot(), BsDropdownModule.forRoot(),
+
   ],
   exports: [ AccordionModule, CarouselModule, BsDropdownModule]
 })

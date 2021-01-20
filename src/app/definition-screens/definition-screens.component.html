@@ -1,0 +1,60 @@
+<div class="container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Defintion Screen</mat-card-title>
+      <mat-card-subtitle> Breed</mat-card-subtitle>
+    </mat-card-header>
+    <form [formGroup]="">
+      <mat-card-content>
+        <mat-grid-list cols="2" [gutterSize]="'50px'" rowHeight="5:1">
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <mat-label>Type of Definition</mat-label>
+              <mat-select formControlName="defintionType"  required (selectionChange)="changeDefintion($event.value)">
+                <mat-option value="undefined">Please select Defintion Type
+                </mat-option>
+                <mat-option value="0">Type of Car
+                </mat-option>
+                <mat-option value="1">Type of vichle
+                </mat-option>
+                <mat-option value="2">Natinolity
+                </mat-option>
+
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+        <mat-grid-list cols="2" [gutterSize]="'50px'" rowHeight="5:1">
+
+          <mat-grid-tile *ngIf="defintionType">
+            <mat-form-field class="example-full-width">
+
+              <mat-label>Type of car</mat-label>
+              <mat-select formControlName="typeOfCar" required>
+                <mat-option value="undefined">Please select Car Type
+                </mat-option>
+                <mat-option *ngFor="let typeOfCar of typeOfCarDto" [value]="typeOfCar.id">
+                  {{typeOfCar.carName}}
+                </mat-option>
+              </mat-select>
+              <mat-error></mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Description" required formControlName="Description">
+              <mat-error></mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="warn">Rest</button>
+        <button mat-raised-button color="primary">Add Item</button>
+      </mat-card-actions>
+      </form>
+  </mat-card>
+</div>

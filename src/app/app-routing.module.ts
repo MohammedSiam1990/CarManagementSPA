@@ -8,6 +8,7 @@ import { TestappComponent } from './test/testapp/testapp.component';
 
 import { CarCardQueryComponent } from './carCard/carCard-query/carCard-query.component';
 import { CarCardCreateComponent } from './carCard/carCard-create/carCard-create.component';
+import { DefinitionScreensComponent } from './definition-screens/definition-screens.component';
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
             {path: 'carCardQuery', component: CarCardQueryComponent},
             {path: 'carCardCreate', component: CarCardCreateComponent },
             {path: 'testApp', component: TestappComponent},
+            {path: 'definitionScreens', component: DefinitionScreensComponent},
             // {path: 'member-detail/:id', component: MemberDetailComponent,
             //  resolve: {user: MemberDetailResolver}},
             // {path: 'member-edit', component: MemberEditComponent,
@@ -26,6 +28,7 @@ const routes: Routes = [
             // {path: 'lists', component: ListsComponent, resolve: {users: ListResolver}},
         ]
     },
+
     { path: '**', redirectTo: '' }
 ];
 
