@@ -7,7 +7,7 @@
       <a mat-list-item [routerLink]="'/carCardCreate'"> Create Officer </a>
       <a mat-list-item [routerLink]="'/definitionScreens'"> Definition Screens </a>
 
-      <mat-list-item [matMenuTriggerFor]="menu">
+      <!-- <mat-list-item [matMenuTriggerFor]="menu">
         <span class="material-icons">
           edit
           </span>
@@ -17,7 +17,7 @@
       <mat-menu #menu="matMenu">
         <button mat-menu-item>View profile</button>
         <button mat-menu-item>Add contact</button>
-      </mat-menu>
+      </mat-menu> -->
 
       <!-- <mat-form-field appearance="fill">
         <mat-label><i class="fa fa-language"></i></mat-label>
@@ -57,6 +57,22 @@
       <a mat-list-item (click)="logout()"> Log Out </a>
       <!-- <a mat-list-item [routerLink]="'/auth'"> Log Out  </a> -->
       <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
+
+      <mat-list>
+        <div mat-subheader>Folders</div>
+        <mat-list-item *ngFor="let folder of folders">
+          <mat-icon mat-list-icon>folder</mat-icon>
+          <div mat-line>{{folder.name}}</div>
+          <div mat-line> {{folder.updated | date}} </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Notes</div>
+        <mat-list-item *ngFor="let note of notes">
+          <mat-icon mat-list-icon>note</mat-icon>
+          <div mat-line>{{note.name}}</div>
+          <div mat-line> {{note.updated | date}} </div>
+        </mat-list-item>
+      </mat-list>
     </mat-nav-list>
   </mat-drawer>
 
@@ -73,17 +89,36 @@
         <span>Car Management </span>
 
         <div>
+            <button class="example-spacer" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <!-- <mat-icon>more_vert</mat-icon> -->
+              Car Card
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>dialpad</mat-icon>
+                <span>Redial</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>voicemail</mat-icon>
+                <span>Check voice mail</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Disable alerts</span>
+              </button>
+            </mat-menu>
+
           <a mat-button [routerLink]="'/carCardQuery'"> Query Car Card </a>
           <a mat-button [routerLink]="'/carCardCreate'"> Create Car Card </a>
           <a mat-button [routerLink]="'/auth'"> Contacts </a>
           <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
           <a mat-button [routerLink]="'/activities'"> Activities </a>
-          <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
+          <a mat-button [routerLink]="'/create-activity'"> RRRooo </a>
+
         </div>
 
       </mat-toolbar-row>
       <mat-toolbar-row>
-
         <div>
           <a mat-button [routerLink]="'/carCardQuery'"> Query Officer </a>
           <a mat-button [routerLink]="'/carCardCreate'"> Create Officer </a>

@@ -5,20 +5,22 @@
       <mat-card-title>Defintion Screen</mat-card-title>
       <mat-card-subtitle> Breed</mat-card-subtitle>
     </mat-card-header>
-    <form [formGroup]="">
+    <form [formGroup]="defintionForm" (ngSubmit)="addNewItem()">
       <mat-card-content>
         <mat-grid-list cols="2" [gutterSize]="'50px'" rowHeight="5:1">
           <mat-grid-tile>
             <mat-form-field class="example-full-width">
               <mat-label>Type of Definition</mat-label>
-              <mat-select formControlName="defintionType"  required (selectionChange)="changeDefintion($event.value)">
+              <mat-select formControlName="lookUpType" required (selectionChange)="changeDefintion($event.value)">
                 <mat-option value="undefined">Please select Defintion Type
                 </mat-option>
-                <mat-option value="0">Type of Car
+                <mat-option value = 0 >Type of Car
                 </mat-option>
-                <mat-option value="1">Type of vichle
+                <mat-option value= 1>Natinolity
                 </mat-option>
-                <mat-option value="2">Natinolity
+                <mat-option value= 2>Car of Model
+                </mat-option>
+                <mat-option value= 3>Rate
                 </mat-option>
 
               </mat-select>
@@ -26,13 +28,13 @@
           </mat-grid-tile>
 
         </mat-grid-list>
-        <mat-grid-list cols="2" [gutterSize]="'50px'" rowHeight="5:1">
+        <mat-grid-list cols="3" [gutterSize]="'50px'" rowHeight="4:1">
 
-          <mat-grid-tile *ngIf="defintionType">
+          <mat-grid-tile *ngIf="defintionType && typeOfCar" >
             <mat-form-field class="example-full-width">
 
               <mat-label>Type of car</mat-label>
-              <mat-select formControlName="typeOfCar" required>
+              <mat-select  formControlName="otherType" required>
                 <mat-option value="undefined">Please select Car Type
                 </mat-option>
                 <mat-option *ngFor="let typeOfCar of typeOfCarDto" [value]="typeOfCar.id">
@@ -42,9 +44,15 @@
               <mat-error></mat-error>
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Description" required formControlName="Description">
+          <!-- <mat-grid-tile *ngIf="defintionType">
+            <mat-form-field class="example-full-width" >
+              <input matInput placeholder="ID" required formControlName="id">
+              <mat-error></mat-error>
+            </mat-form-field>
+        </mat-grid-tile> -->
+          <mat-grid-tile *ngIf="defintionType">
+            <mat-form-field class="example-full-width" >
+              <input matInput placeholder="Description" required formControlName="description">
               <mat-error></mat-error>
             </mat-form-field>
         </mat-grid-tile>

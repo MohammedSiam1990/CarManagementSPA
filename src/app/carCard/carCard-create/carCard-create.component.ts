@@ -42,7 +42,7 @@ export class CarCardCreateComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.createCarCardForm();
+    this.createCarCardValidatorsForm();
     // tslint:disable-next-line: no-debugger
     this.loadLookUP();
   }
@@ -80,7 +80,7 @@ export class CarCardCreateComponent implements OnInit {
       );
   }
   // tslint:disable-next-line: typedef
-  createCarCardForm() {
+  createCarCardValidatorsForm() {
 
     this.carCardForm = this.fb.group(
       {
@@ -108,8 +108,7 @@ export class CarCardCreateComponent implements OnInit {
   }
   // tslint:disable-next-line: typedef
   addCarCard() {
-    // tslint:disable-next-line: no-debugger
-    debugger;
+
     // if (this.carCardForm.valid) {
     this.carCardService
       .addNewCarCard(this.authService.decodedToken.nameid, this.carCardForm.value)

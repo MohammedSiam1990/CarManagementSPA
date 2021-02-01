@@ -31,4 +31,14 @@ export class LookUpService {
         })
       );
   }
+
+  definitionlookup(userId: number, definitionlookupForm : any ) {
+
+    return this.http.post(this.baseurl + userId + '/AddItemslookUp', definitionlookupForm).pipe(
+      map((response: any) => {
+        console.log(response);
+        return response;
+      })
+    );
+  }
 }
