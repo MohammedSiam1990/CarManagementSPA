@@ -61,7 +61,7 @@ export class DefinitionScreensComponent implements OnInit {
         alert("Wrong Grade.........");
        }
      }
-    // if (value == 0) {
+    // if (value == 0){
     //   this.defintionType=true;
     //   this.typeOfCar= true;
     // }
